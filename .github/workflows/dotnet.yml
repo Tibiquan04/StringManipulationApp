@@ -27,6 +27,6 @@ jobs:
       if: failure()
       uses: JasonEtco/create-an-issue@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}
         title: "Test Failed"
         body: "One or more tests have failed. Please review the test results and fix the issues."
