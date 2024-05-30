@@ -19,7 +19,7 @@ namespace StringManipulationTests
         public void TestRemoveLastCharacter()
         {
             string input = "Hello";
-            string expected = "Hellx";
+            string expected = "Hellxx";
             string result = Program.RemoveLastCharacter(input);
             Assert.Equal(expected, result);
         }
