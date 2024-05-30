@@ -2,7 +2,7 @@
 
 namespace StringManipulationApp
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -13,13 +13,13 @@ namespace StringManipulationApp
             Console.WriteLine(result2);
         }
 
-        static string RemoveFirstCharacter(string input)
+        public static string RemoveFirstCharacter(string input)
         {
             if (string.IsNullOrEmpty(input)) return input;
             return input.Substring(1);
         }
 
-        static string RemoveLastCharacter(string input)
+        public static string RemoveLastCharacter(string input)
         {
             if (string.IsNullOrEmpty(input)) return input;
             return input.Substring(0, input.Length - 1);
