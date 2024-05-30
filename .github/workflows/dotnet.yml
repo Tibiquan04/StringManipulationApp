@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -12,21 +12,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
-    - name: Install dependencies
-      run: dotnet restore
+        dotnet-version: 6.x
+    - name: Restore dependencies
+      run: dotnet restore string-modifier/string-modifier.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build string-modifier/string-modifier.csproj
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
-    - name: Create Issue on Test Failure
-      if: failure()
+      run: dotnet test TestStrings/TestStrings.csproj
+    - name: Create issue if tests failed
+      if: ${{ failure() }}
       uses: JasonEtco/create-an-issue@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        token: ${{ secrets.TOKEN }}
-        title: "Test Failed"
-        body: "One or more tests have failed. Please review the test results and fix the issues."
+        filename: .github/ISSUE_TEMPLATE.md
